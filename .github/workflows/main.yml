@@ -14,7 +14,7 @@ on:
         required: true              
 
 jobs:
-  build:
+  samloader-actions:
     runs-on: ubuntu-latest
     permissions:
       contents: write    
@@ -27,8 +27,8 @@ jobs:
 
       - name: Install packages & setup
         run: |
-          sudo apt update -y  
-          sudo apt install python3 python-is-python3 -y      
+          sudo apt update -y > /dev/null 2>&1
+          sudo apt install python3 python-is-python3 -y > /dev/null 2>&1 
           
       - name: Set environment variables
         run: |

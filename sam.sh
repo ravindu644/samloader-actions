@@ -16,7 +16,7 @@ echo -e "${MAGENTA}\n[+] Success..! ${RESET}\n"
 
 echo -e "${UNBOLD_GREEN}[+] Installing Samloader...${RESET}\n"
 if [ ! -f "$WDIR/.samloader" ]; then
-    cd ~ ; pip3 install git+https://github.com/martinetd/samloader.git --no-warn-script-location
+    cd ~ ; pip3 install git+https://github.com/martinetd/samloader.git --no-warn-script-location > /dev/null 2>&1
     echo "1" > "$WDIR/.samloader"
     cd "$WDIR"
 else
