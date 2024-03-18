@@ -52,7 +52,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          document: output/*.zip
+          message_file: output/*.zip
           format: html
           disable_web_page_preview: true
           message: |
