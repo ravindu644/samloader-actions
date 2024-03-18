@@ -54,7 +54,8 @@ if [ ! -d "$WDIR/Downloads" ];then
 fi
 
 if ! python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" download -v "${VERSION}" -O "$WDIR/Downloads" ; then
-    echo -e "${RED}\n[x] Something Strange Happened :( \n${RESET}"
+    source "$WDIR/res/colors"
+    echo -e "${RED}\n[x] Something Strange Happened :(${RESET}"
     echo -e "${RED}\n[?] Did you enter the correct IMEI for your device model 👀 \n${RESET}"
     exit    
 fi
