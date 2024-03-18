@@ -1,0 +1,64 @@
+name: Create a zip for Magisk
+
+on:
+  workflow_dispatch:
+    inputs:      
+      model:
+        description: 'Your Model Number'
+        required: true       
+      imei:
+        description: 'Your IMEI'
+        required: true         
+      csc:
+        description: 'Your CSC (Samsung Region code)'
+        required: true              
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write    
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install packages & setup
+        run: |
+          sudo apt update -y  
+          sudo apt install python3 python-is-python3 -y      
+          
+      - name: Set environment variables
+        run: |
+          echo "MODEL=${{ github.event.inputs.model }}" >> $GITHUB_ENV
+          echo "IMEI=${{ github.event.inputs.imei }}" >> $GITHUB_ENV
+          echo "CSC=${{ github.event.inputs.csc }}" >> $GITHUB_ENV          
+          
+      - name: Running samloader-actions
+        run: |
+          bash sam.sh      
+
+      - name: Uploading zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: "Stock files - ${{ env.MODEL }}"
+          path: |
+            output/*.zip
+
+      - name: Upload to Telegram
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          document: output/*.zip
+          format: html
+          disable_web_page_preview: true
+          message: |
+            <b>New Dump 📂..!</b>
+
+            <b>Device :</b> ${{ env.MODEL }}                       
+            <b>Frome Repository:</b> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
+            
+            <b>Powered by:</b> <a href="https://github.com/ravindu644/samloader-actions">samloader-actions</a>            
