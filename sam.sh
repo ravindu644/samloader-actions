@@ -55,15 +55,15 @@ fi
 
 if ! python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" download -v "${VERSION}" -O "$WDIR/Downloads" ; then
     source "$WDIR/res/colors"
-    echo -e "${RED}\n[x] Something Strange Happened :(${RESET}"
-    echo -e "${RED}\n[?] Did you enter the correct IMEI for your device model 👀 \n${RESET}"
+    echo -e "${BOLD_WHITE}\n[x] Something Strange Happened :(${RESET}"
+    echo -e "${BOLD_WHITE}\n[?] Did you enter the correct IMEI for your device model 👀 \n${RESET}"
     exit    
 fi
 
 echo -e "\n${MINT_GREEN}[+] Decrypting...\n${RESET}\n"
 FILE="$(ls $WDIR/Downloads/*.enc*)"
 if ! python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" decrypt -v "${VERSION}" -i "$FILE" -o "$WDIR/Downloads/firmware.zip"; then
-    echo -e "${RED}\n[x] Something Strange Happened :( \n${RESET}"
+    echo -e "${BOLD_WHITE}\n[x] Something Strange Happened :( \n${RESET}"
     exit    
 fi
 

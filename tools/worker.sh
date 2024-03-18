@@ -69,17 +69,14 @@ stock_files(){
 			if [ "$is_dt" == 1 ] && [ $is_dtbo == 1 ]; then 
 				cp boot.img vbmeta.img recovery.img dtbo.img dt.img "$WDIR/output/"
 				cd "$WDIR/output" #changed dir
-				fastbootd_function
 				tar cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img dtbo.img dt.img; rm *.img #cleaning
 			elif [ ! "$is_dt" == 1 ] && [ $is_dtbo == 1 ]; then
 				cp boot.img.lz4 vbmeta.img.lz4 recovery.img.lz4 dtbo.img.lz4 "$WDIR/output/"
 				cd "$WDIR/output" #changed dir
-				fastbootd_function
 				tar cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img dtbo.img ; rm *.img #cleaning
 			else
 			 	cp boot.img vbmeta.img recovery.img "$WDIR/output/"
 				cd "$WDIR/output" #changed dir
-				fastbootd_function
 				tar cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img ; rm *.img #cleaning
 			fi
 
