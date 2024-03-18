@@ -59,6 +59,6 @@ jobs:
             <b>New Dump 📂..!</b>
 
             <b>Device :</b> ${{ env.MODEL }}                       
-            <b>Frome Repository:</b> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
+            <b>From Repository:</b> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
             
             <b>Powered by:</b> <a href="https://github.com/ravindu644/samloader-actions">samloader-actions</a>            
