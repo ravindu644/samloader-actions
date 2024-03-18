@@ -2,8 +2,6 @@
 
 # Copyright (c) [2023] [@ravindu644]
 
-set -e
-
 clear
 export WDIR=$(pwd)
 chmod +755 -R *
