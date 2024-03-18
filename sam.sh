@@ -7,7 +7,7 @@ export WDIR=$(pwd)
 chmod +755 -R *
 source "$WDIR/res/colors"
 
-echo -e "${BLUE}Samsung Firmware Extractor 3.0 - By @ravindu644${RESET}\n"
+echo -e "/n${BLUE}Samloader Actions - By @ravindu644${RESET}\n"
 echo -e "\n\t${UNBOLD_GREEN}Installing requirements...${RESET}\n"
 
 sudo apt install simg2img lz4 openssl python3-pip -y > /dev/null 2>&1
