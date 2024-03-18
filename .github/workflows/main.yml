@@ -38,7 +38,7 @@ jobs:
           
       - name: Running samloader-actions
         run: |
-          bash sam.sh
+          bash sam.sh      
 
       - name: Uploading zip
         uses: actions/upload-artifact@v4
@@ -61,4 +61,4 @@ jobs:
             <b>Device :</b> ${{ env.MODEL }}                       
             <b>From Repository:</b> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
             
-            <b>Powered by:</b> <a href="https://github.com/ravindu644/samloader-actions">samloader-actions</a>
+            <b>Powered by:</b> <a href="https://github.com/ravindu644/samloader-actions">samloader-actions</a>            
