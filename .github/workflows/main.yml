@@ -39,10 +39,6 @@ jobs:
       - name: Running samloader-actions
         run: |
           bash sam.sh
-          if [ $? -ne 0 ]; then
-            echo "Error executing sam.sh. Stopping workflow." >&2
-            exit 1
-          fi
 
       - name: Uploading zip
         uses: actions/upload-artifact@v4
