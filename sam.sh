@@ -53,7 +53,11 @@ if [ ! -d "$WDIR/Downloads" ];then
     mkdir Downloads output
 fi
 
-python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" download -v "${VERSION}" -O "$WDIR/Downloads"
+if ! python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" download -v "${VERSION}" -O "$WDIR/Downloads" ; then
+    echo -e "${RED}\n[x] Something Strange Happened :( \n${RESET}"
+    echo -e "${RED}\n[?] Did you enter the correct IMEI for your device model 👀 \n${RESET}"
+    exit    
+fi
 
 echo -e "\n${MINT_GREEN}[+] Decrypting...\n${RESET}\n"
 FILE="$(ls $WDIR/Downloads/*.enc*)"
