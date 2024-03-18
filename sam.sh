@@ -12,7 +12,6 @@ echo -e "\n\t${UNBOLD_GREEN}Installing requirements...${RESET}\n"
 
 sudo apt install simg2img lz4 openssl python3-pip -y > /dev/null 2>&1
 echo -e "${MAGENTA}\n[+] Success..! ${RESET}\n"
-#python3 python-is-python3
 
 echo -e "${UNBOLD_GREEN}[+] Installing Samloader...${RESET}\n"
 if [ ! -f "$WDIR/.samloader" ]; then
@@ -23,10 +22,6 @@ else
     echo -e "${RED}[x] Existing Installation found..!\n${RESET}"
 fi
 
-#tmp variables
-#export MODEL="YOUR MODEL"
-#export IMEI="YOUR IMEI"
-#export CSC="YOUR CSC"
 export BASE_TAR_NAME="Stock files - ${MODEL}.tar"
 
 echo -e "====================================\n"
@@ -38,7 +33,7 @@ echo -e "====================================\n"
 echo -e "${MINT_GREEN}[+] Fetching Latest Firmware...\n${RESET}"
 if ! VERSION=$(python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" checkupdate 2>/dev/null); then
     echo -e "${RED}\n[x] Model or region not found (403)\n${RESET}"
-    exit
+    exit 1
 else
     echo -e "${LIGHT_YELLOW}[i] Update found: ${BOLD_WHITE}${VERSION}${RESET}\n${LIGHT_YELLOW}${RESET}"
 fi
@@ -57,14 +52,14 @@ if ! python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" download -v "${
     source "$WDIR/res/colors"
     echo -e "${BOLD_WHITE}\n[x] Something Strange Happened :(${RESET}"
     echo -e "${BOLD_WHITE}\n[?] Did you enter the correct IMEI for your device model 👀 \n${RESET}"
-    exit    
+    exit 1
 fi
 
 echo -e "\n${MINT_GREEN}[+] Decrypting...\n${RESET}\n"
 FILE="$(ls $WDIR/Downloads/*.enc*)"
 if ! python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" decrypt -v "${VERSION}" -i "$FILE" -o "$WDIR/Downloads/firmware.zip"; then
     echo -e "${BOLD_WHITE}\n[x] Something Strange Happened :( \n${RESET}"
-    exit    
+    exit 1
 fi
 
 #### Begin of core worker ####
