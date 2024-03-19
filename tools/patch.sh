@@ -2,9 +2,33 @@
 
 # Based on : https://github.com/Mesa-Labs-Archive/UN1CA
 
-BOOT_SIZE="$(stat -c '%s' "${WDIR}/Downloads/boot.img")"
 MAGISK_DIR="${WDIR}/Magisk"
 TMP_DIR="${MAGISK_DIR}/Workspace"
+AIK_DIR="${WDIR}/tools/AIK"
+
+check_ramdisk(){
+    echo -e "[i] Checking Ramdisk status..\n"
+    sudo chmod +775 -R "${AIK_DIR}"
+    sudo bash "${AIK_DIR}/cleanup.sh" > /dev/null 2>&1
+    rm "${AIK_DIR}/boot.img" > /dev/null 2>&1
+    cp "$WDIR/Downloads/boot.img" "${AIK_DIR}/boot.img"
+    sudo bash "${AIK_DIR}/unpackimg.sh" > /dev/null 2>&1
+
+    if [ "$(ls -A "${AIK_DIR}/ramdisk")" ]; then
+        echo -e "${MINT_GREEN}[i] Ramdisk found in 'boot.img' ${RESET}\n"
+        export RAMDISK=1
+        export IMG="boot"
+        export TAR="$WDIR/Downloads/${IMG}.img"
+        export BOOT_SIZE="$(stat -c '%s' "${WDIR}/Downloads/${IMG}.img")"
+    else
+        echo -e "${RED}[x] Ramdisk not found in 'boot.img' ${RESET}"
+        echo -e "${LIGHT_YELLOW}[i] Using 'recovery.img' instead.. ${RESET}\n"
+        export RAMDISK=0
+        export IMG="recovery"
+        export TAR="$WDIR/Downloads/${IMG}.img"
+        export BOOT_SIZE="$(stat -c '%s' "${WDIR}/Downloads/${IMG}.img")"      
+    fi
+}
 
 download_magisk() {
     local latest_version
@@ -16,8 +40,6 @@ download_magisk() {
 }
 
 patch_kernel() {
-    local TAR="$WDIR/output/${BASE_TAR_NAME}"
-    
     if [ ! -f "$TAR" ]; then
         echo -e "${RED}[x] File not found: ${TAR}${RESET}"
         exit 1
@@ -44,15 +66,20 @@ patch_kernel() {
         echo 'KEEPFORCEENCRYPT=true'
         echo 'KEEPVERITY=true'
         echo 'PREINITDEVICE=cache'
+
+        if [ "$RAMDISK" -eq 0 ]; then
+            echo 'RECOVERYMODE=true'
+        fi
+
     } > "$TMP_DIR/util_functions.sh"
 
     echo -e "\n${LIGHT_YELLOW}[i] Patching $TAR...${RESET}\n"
-    cp -a --preserve=all "$TAR" "$TMP_DIR/stock.tar"
-    sh "$TMP_DIR/boot_patch.sh" "$TMP_DIR/stock.tar" 2> /dev/null
+    cp -a --preserve=all "$TAR" "$TMP_DIR/stock.img"
+    sh "$TMP_DIR/boot_patch.sh" "$TMP_DIR/stock.img" 2> /dev/null
 
     # Move patched boot image to appropriate directory
-    dd if="$TMP_DIR/new-boot.img" of="$TMP_DIR/boot.img" bs=4k count=${BOOT_SIZE} iflag=count_bytes
-    mv -f "$TMP_DIR/boot.img" "$WDIR/output/Magisk_Patched/"
+    dd if="$TMP_DIR/new-boot.img" of="$TMP_DIR/${IMG}.img" bs=4k count=${BOOT_SIZE} iflag=count_bytes
+    mv -f "$TMP_DIR/${IMG}.img" "$WDIR/output/Magisk_Patched/${IMG}.img"
 
     # Clean up temporary directory if needed
     rm -rf "$TMP_DIR"
@@ -68,9 +95,9 @@ vbmeta_patch(){
 repacking(){
     echo -e "\n${MINT_GREEN}[+] Repacking tar...${RESET}\n"
     cd "$WDIR/output/Magisk_Patched"
-    tar -cvf "Magisk_Patched-${MODEL}.tar" boot.img vbmeta.img
-    zip "Magisk_Patched-${MODEL}.tar.zip" "Magisk_Patched-${MODEL}.tar"
-    mv "Magisk_Patched-${MODEL}.tar.zip" "$WDIR/Dist"
+    tar -cvf "Magisk_Patched-${IMG}-${MODEL}.tar" "${IMG}.img" vbmeta.img
+    zip "Magisk_Patched-${IMG}-${MODEL}.tar.zip" "Magisk_Patched-${IMG}-${MODEL}.tar"
+    mv "Magisk_Patched-${IMG}-${MODEL}.tar.zip" "$WDIR/Dist"
     echo -e "\n${LIGHT_YELLOW}[i] Repacking Done...! ${RESET}\n"    
 }
 
