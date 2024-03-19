@@ -2,6 +2,7 @@
 
 # Based on : https://github.com/Mesa-Labs-Archive/UN1CA
 
+BOOT_SIZE="$(stat -c '%s' '${WDIR}/Downloads/boot.img')"
 MAGISK_DIR="${WDIR}/Magisk"
 TMP_DIR="${MAGISK_DIR}/Workspace"
 
@@ -50,7 +51,8 @@ patch_kernel() {
     sh "$TMP_DIR/boot_patch.sh" "$TMP_DIR/stock.tar" 2> /dev/null
 
     # Move patched boot image to appropriate directory
-    mv -f "$TMP_DIR/new-boot.img" "$WDIR/output/Magisk_Patched/boot.img"
+    dd if=new-boot.img of=boot.img bs=4k count=${BOOT_SIZE} iflag=count_bytes
+    mv -f "$TMP_DIR/boot.img" "$WDIR/output/Magisk_Patched/"
 
     # Clean up temporary directory if needed
     rm -rf "$TMP_DIR"
