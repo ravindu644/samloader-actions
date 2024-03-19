@@ -101,6 +101,7 @@ repacking(){
     echo -e "\n${LIGHT_YELLOW}[i] Repacking Done...! ${RESET}\n"    
 }
 
+check_ramdisk
 patch_kernel
 vbmeta_patch
 repacking
