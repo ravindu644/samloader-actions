@@ -2,7 +2,7 @@
 
 # Based on : https://github.com/Mesa-Labs-Archive/UN1CA
 
-BOOT_SIZE="$(stat -c '%s' '${WDIR}/Downloads/boot.img')"
+BOOT_SIZE="$(stat -c '%s' "${WDIR}/Downloads/boot.img")"
 MAGISK_DIR="${WDIR}/Magisk"
 TMP_DIR="${MAGISK_DIR}/Workspace"
 
