@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# Based on : https://github.com/Mesa-Labs-Archive/UN1CA
+
 MAGISK_DIR="${WDIR}/Magisk"
 TMP_DIR="${MAGISK_DIR}/Workspace"
 
@@ -38,9 +41,8 @@ patch_kernel() {
         echo 'abort() { ui_print "$1"; exit 1; }'
         echo 'api_level_arch_detect() { true; }'
         echo 'KEEPFORCEENCRYPT=true'
-        echo 'KEEPVERITY=false'
+        echo 'KEEPVERITY=true'
         echo 'PREINITDEVICE=cache'
-        echo 'PATCHVBMETAFLAG=true'
     } > "$TMP_DIR/util_functions.sh"
 
     echo -e "${LIGHT_YELLOW}[i] Patching $TAR...${RESET}\n"
