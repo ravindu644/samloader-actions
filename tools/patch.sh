@@ -51,7 +51,7 @@ patch_kernel() {
     sh "$TMP_DIR/boot_patch.sh" "$TMP_DIR/stock.tar" 2> /dev/null
 
     # Move patched boot image to appropriate directory
-    dd if=new-boot.img of=boot.img bs=4k count=${BOOT_SIZE} iflag=count_bytes
+    dd if="$TMP_DIR/new-boot.img" of="$TMP_DIR/boot.img" bs=4k count=${BOOT_SIZE} iflag=count_bytes
     mv -f "$TMP_DIR/boot.img" "$WDIR/output/Magisk_Patched/"
 
     # Clean up temporary directory if needed
