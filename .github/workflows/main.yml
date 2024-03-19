@@ -40,19 +40,24 @@ jobs:
         run: |
           bash sam.sh      
 
-      - name: Uploading zip
+      - name: Uploading Stock Files
         uses: actions/upload-artifact@v4
         with:
           name: "Stock files - ${{ env.MODEL }}"
-          path: |
-            output/*.zip
+          path: Dist/Stock_files*.zip
+          
+      - name: Uploading Magisk Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: "Magisk_Patched-${{ env.MODEL }}"
+          path: Dist/Magisk_Patched*.zip            
 
       - name: Upload to Telegram
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          document: output/*.zip
+          document: "Dist/Stock_files*.zip,Dist/Magisk_Patched*.zip"
           format: html
           disable_web_page_preview: true
           message: |
