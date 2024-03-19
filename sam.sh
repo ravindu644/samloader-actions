@@ -32,13 +32,13 @@ echo -e "====================================\n"
 
 echo -e "${MINT_GREEN}[+] Fetching Latest Firmware...\n${RESET}"
 if ! VERSION=$(python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" checkupdate 2>/dev/null); then
-    echo -e "${RED}\n[x] Model or region not found (403)\n${RESET}"
+    echo -e "\n${RED}[x] Model or region not found (403) ${RESET}\n"
     exit 1
 else
     echo -e "${LIGHT_YELLOW}[i] Update found: ${BOLD_WHITE}${VERSION}${RESET}\n${LIGHT_YELLOW}${RESET}"
 fi
 
-echo -e "${MINT_GREEN}[+] Attempting to Download...\n${RESET}"
+echo -e "${MINT_GREEN}[+] Attempting to Download...\n ${RESET}"
 
 if [  -d "$WDIR/Downloads" ];then
     rm -rf Downloads output Magisk Dist
@@ -50,15 +50,15 @@ fi
 
 if ! python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" download -v "${VERSION}" -O "$WDIR/Downloads" ; then
     source "$WDIR/res/colors"
-    echo -e "${BOLD_WHITE}\n[x] Something Strange Happened :(${RESET}"
-    echo -e "${BOLD_WHITE}\n[?] Did you enter the correct IMEI for your device model 👀 \n${RESET}"
+    echo -e "\n${RED}[x] Something Strange Happened :( ${RESET}"
+    echo -e "\n${RED}[?] Did you enter the correct IMEI for your device model..? 👀 ${RESET} \n"
     exit 1
 fi
 
 echo -e "\n${MINT_GREEN}[+] Decrypting...\n${RESET}\n"
 FILE="$(ls $WDIR/Downloads/*.enc*)"
 if ! python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" decrypt -v "${VERSION}" -i "$FILE" -o "$WDIR/Downloads/firmware.zip"; then
-    echo -e "${BOLD_WHITE}\n[x] Something Strange Happened :( \n${RESET}"
+    echo -e "\n${RED}[x] Something Strange Happened :( ${RESET}\n"
     exit 1
 fi
 

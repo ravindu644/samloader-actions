@@ -25,7 +25,7 @@ patch_kernel() {
     mkdir -p "$TMP_DIR" "$WDIR/output/Magisk_Patched"
 
     if [ ! -f "$MAGISK_DIR/Magisk.apk" ]; then
-        echo -e "${MINT_GREEN}\n[+] Downloading Latest Magisk...\n${RESET}"
+        echo -e "\n${MINT_GREEN}[+] Downloading Latest Magisk...${RESET}\n"
         download_magisk
     fi
 
@@ -45,7 +45,7 @@ patch_kernel() {
         echo 'PREINITDEVICE=cache'
     } > "$TMP_DIR/util_functions.sh"
 
-    echo -e "${LIGHT_YELLOW}[i] Patching $TAR...${RESET}\n"
+    echo -e "\n${LIGHT_YELLOW}[i] Patching $TAR...${RESET}\n"
     cp -a --preserve=all "$TAR" "$TMP_DIR/stock.tar"
     sh "$TMP_DIR/boot_patch.sh" "$TMP_DIR/stock.tar" 2> /dev/null
 
@@ -57,19 +57,19 @@ patch_kernel() {
 }
 
 vbmeta_patch(){
-    echo -e "${MINT_GREEN}\n[+] Patching VBMETA...\n${RESET}"
+    echo -e "\n${MINT_GREEN}[+] Patching VBMETA...${RESET}\n"
     cp "${WDIR}/Downloads/vbmeta.img" "$WDIR/output/Magisk_Patched/vbmeta.img"
     "${WDIR}/tools/vbmeta-disable-verification" "${WDIR}/output/Magisk_Patched/vbmeta.img"
-    echo -e "${LIGHT_YELLOW}\n[i] Patching Done...\n${RESET}\n"
+    echo -e "\n${LIGHT_YELLOW}[i] Patching Done...${RESET}\n"
 }
 
 repacking(){
-    echo -e "${MINT_GREEN}\n[+] Repacking tar...\n${RESET}"\n
+    echo -e "\n${MINT_GREEN}[+] Repacking tar...${RESET}\n"
     cd "$WDIR/output/Magisk_Patched"
     tar -cvf "Magisk_Patched-${MODEL}.tar" boot.img vbmeta.img
-    zip "Magisk_Patched-${MODEL}.tar" "Magisk_Patched-${MODEL}.tar.zip"
+    zip "Magisk_Patched-${MODEL}.tar.zip" "Magisk_Patched-${MODEL}.tar"
     mv "Magisk_Patched-${MODEL}.tar.zip" "$WDIR/Dist"
-    echo -e "${LIGHT_YELLOW}\n[i] Repacking Done...! \n${RESET}\n"    
+    echo -e "\n${LIGHT_YELLOW}[i] Repacking Done...! ${RESET}\n"    
 }
 
 patch_kernel
