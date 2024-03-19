@@ -41,11 +41,11 @@ fi
 echo -e "${MINT_GREEN}[+] Attempting to Download...\n${RESET}"
 
 if [  -d "$WDIR/Downloads" ];then
-    rm -rf Downloads output
+    rm -rf Downloads output Magisk
 fi
 
 if [ ! -d "$WDIR/Downloads" ];then
-    mkdir Downloads output
+    mkdir Downloads output Magisk
 fi
 
 if ! python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" download -v "${VERSION}" -O "$WDIR/Downloads" ; then
@@ -66,4 +66,6 @@ fi
 
 bash "$WDIR/tools/worker.sh"
 
-#### End of core worker ####
+#### Begin of Magisk Boot Image Patcher ####
+
+bash "$WDIR/tools/patch.sh"

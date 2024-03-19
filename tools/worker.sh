@@ -82,9 +82,8 @@ stock_files(){
 
 	fi
 	zip "${BASE_TAR_NAME}.zip" "$BASE_TAR_NAME"
-	rm "$BASE_TAR_NAME"
+	#rm "$BASE_TAR_NAME"
 	echo -e "\n${LIGHT_YELLOW}[i] Zip file created: ${BASE_TAR_NAME}.zip${RESET}\n"
-	rm $WDIR/Downloads/*.img
 }
 
 extract
