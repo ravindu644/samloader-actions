@@ -50,10 +50,28 @@ patch_kernel() {
     sh "$TMP_DIR/boot_patch.sh" "$TMP_DIR/stock.tar" 2> /dev/null
 
     # Move patched boot image to appropriate directory
-    mv -f "$TMP_DIR/new-boot.img" "$WDIR/output/Magisk_Patched"
+    mv -f "$TMP_DIR/new-boot.img" "$WDIR/output/Magisk_Patched/boot.img"
 
     # Clean up temporary directory if needed
     rm -rf "$TMP_DIR"
 }
 
+vbmeta_patch(){
+    echo -e "${MINT_GREEN}\n[+] Patching VBMETA...\n${RESET}"
+    cp "${WDIR}/Downloads/vbmeta.img" "$WDIR/output/Magisk_Patched/vbmeta.img"
+    "${WDIR}/tools/vbmeta-disable-verification" "${WDIR}/output/Magisk_Patched/vbmeta.img"
+    echo -e "${LIGHT_YELLOW}\n[i] Patching Done...\n${RESET}\n"
+}
+
+repacking(){
+    echo -e "${MINT_GREEN}\n[+] Repacking tar...\n${RESET}"\n
+    cd "$WDIR/output/Magisk_Patched"
+    tar -cvf "Magisk_Patched-${MODEL}.tar" boot.img vbmeta.img
+    zip "Magisk_Patched-${MODEL}.tar" "Magisk_Patched-${MODEL}.tar.zip"
+    mv "Magisk_Patched-${MODEL}.tar.zip" "$WDIR/Dist"
+    echo -e "${LIGHT_YELLOW}\n[i] Repacking Done...! \n${RESET}\n"    
+}
+
 patch_kernel
+vbmeta_patch
+repacking

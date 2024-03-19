@@ -22,7 +22,7 @@ else
     echo -e "${RED}[x] Existing Installation found..!\n${RESET}"
 fi
 
-export BASE_TAR_NAME="Stock files - ${MODEL}.tar"
+export BASE_TAR_NAME="Stock_files-${MODEL}.tar"
 
 echo -e "====================================\n"
 echo -e "${LIGHT_YELLOW}[+] Model: ${BOLD_WHITE}${MODEL}${RESET}\n${LIGHT_YELLOW}"
@@ -41,11 +41,11 @@ fi
 echo -e "${MINT_GREEN}[+] Attempting to Download...\n${RESET}"
 
 if [  -d "$WDIR/Downloads" ];then
-    rm -rf Downloads output Magisk
+    rm -rf Downloads output Magisk Dist
 fi
 
 if [ ! -d "$WDIR/Downloads" ];then
-    mkdir Downloads output Magisk
+    mkdir Downloads output Magisk Dist
 fi
 
 if ! python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" download -v "${VERSION}" -O "$WDIR/Downloads" ; then
