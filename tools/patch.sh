@@ -15,14 +15,14 @@ patch_kernel() {
     local TAR="$WDIR/output/${BASE_TAR_NAME}"
     
     if [ ! -f "$TAR" ]; then
-        echo "File not found: $TAR"
+        echo -e "${RED}[x] File not found: ${TAR}${RESET}"
         exit 1
     fi
 
-    mkdir -p "$TMP_DIR"
+    mkdir -p "$TMP_DIR" "$WDIR/output/Magisk_Patched"
 
     if [ ! -f "$MAGISK_DIR/Magisk.apk" ]; then
-        echo -e "\n[+] Downloading Magisk.apk\n"
+        echo -e "${MINT_GREEN}\n[+] Downloading Latest Magisk...\n${RESET}"
         download_magisk
     fi
 
@@ -38,19 +38,20 @@ patch_kernel() {
         echo 'abort() { ui_print "$1"; exit 1; }'
         echo 'api_level_arch_detect() { true; }'
         echo 'KEEPFORCEENCRYPT=true'
-        echo 'KEEPVERITY=true'
+        echo 'KEEPVERITY=false'
         echo 'PREINITDEVICE=cache'
+        echo 'PATCHVBMETAFLAG=true'
     } > "$TMP_DIR/util_functions.sh"
 
-    echo "Patching $TAR"
-    cp -a --preserve=all "$TAR" "$TMP_DIR/$TAR"
-    sh "$TMP_DIR/boot_patch.sh" "$TMP_DIR/$TAR" 2> /dev/null
+    echo -e "${LIGHT_YELLOW}[i] Patching $TAR...${RESET}\n"
+    cp -a --preserve=all "$TAR" "$TMP_DIR/stock.tar"
+    sh "$TMP_DIR/boot_patch.sh" "$TMP_DIR/stock.tar" 2> /dev/null
 
     # Move patched boot image to appropriate directory
-    # mv -f "$TMP_DIR/new-boot.img" "$WORK_DIR/kernel/$TAR"
+    mv -f "$TMP_DIR/new-boot.img" "$WDIR/output/Magisk_Patched"
 
     # Clean up temporary directory if needed
-    # rm -rf "$TMP_DIR"
+    rm -rf "$TMP_DIR"
 }
 
 patch_kernel
