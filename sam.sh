@@ -70,4 +70,4 @@ bash "$WDIR/tools/worker.sh"
 
 #### Begin of Magisk Boot Image Patcher ####
 
-bash "$WDIR/tools/patch.sh"
+#bash "$WDIR/tools/patch.sh"
