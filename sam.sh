@@ -62,6 +62,8 @@ if ! python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" decrypt -v "${V
     exit 1
 fi
 
+rm "${FILE}"
+
 #### Begin of core worker ####
 
 bash "$WDIR/tools/worker.sh"
