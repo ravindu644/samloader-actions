@@ -22,7 +22,7 @@ else
     echo -e "${RED}[x] Existing Installation found..!\n${RESET}"
 fi
 
-export BASE_TAR_NAME="Stock_files-${MODEL}.tar"
+export BASE_TAR_NAME="Magisk-Patch-Me-${MODEL}.tar"
 
 echo -e "====================================\n"
 echo -e "${LIGHT_YELLOW}[+] Model: ${BOLD_WHITE}${MODEL}${RESET}\n${LIGHT_YELLOW}"
