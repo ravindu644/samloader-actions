@@ -48,13 +48,13 @@ stock_files(){
 		cd "$WDIR/Downloads" #changed dir
 		cp boot.img recovery.img "$WDIR/output/"
 		cd "$WDIR/output" #changed dir
-		tar cvf "$BASE_TAR_NAME" boot.img recovery.img ; rm *.img #cleaning
+		tar -cvf "$BASE_TAR_NAME" boot.img recovery.img ; rm *.img #cleaning
 
 	elif [ "$PARTITION_SCHEME" == 1 ]; then
 			cd "$WDIR/Downloads" #changed dir
 			cp boot.img vbmeta.img recovery.img dtbo.img "$WDIR/output/"
 			cd "$WDIR/output" #changed dir
-			tar cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img dtbo.img; rm *.img #cleaning
+			tar -cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img dtbo.img; rm *.img #cleaning
 		else
 			cd "$WDIR/Downloads" #changed dir
 			dt_check(){
@@ -69,20 +69,20 @@ stock_files(){
 			if [ "$is_dt" == 1 ] && [ $is_dtbo == 1 ]; then 
 				cp boot.img vbmeta.img recovery.img dtbo.img dt.img "$WDIR/output/"
 				cd "$WDIR/output" #changed dir
-				tar cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img dtbo.img dt.img; rm *.img #cleaning
+				tar -cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img dtbo.img dt.img; rm *.img #cleaning
 			elif [ ! "$is_dt" == 1 ] && [ $is_dtbo == 1 ]; then
 				cp boot.img.lz4 vbmeta.img.lz4 recovery.img.lz4 dtbo.img.lz4 "$WDIR/output/"
 				cd "$WDIR/output" #changed dir
-				tar cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img dtbo.img ; rm *.img #cleaning
+				tar -cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img dtbo.img ; rm *.img #cleaning
 			else
 			 	cp boot.img vbmeta.img recovery.img "$WDIR/output/"
 				cd "$WDIR/output" #changed dir
-				tar cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img ; rm *.img #cleaning
+				tar -cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img ; rm *.img #cleaning
 			fi
 
 	fi
-	mkdir "$MODEL" ; mv "${BASE_TAR_NAME}" "${MODEL}"
-	tar "${BASE_TAR_NAME}" "${MODEL}"
+	cd "$WDIR/output" ; mkdir "${MODEL}" ; mv "${BASE_TAR_NAME}" "${MODEL}"
+	tar -cvf "${BASE_TAR_NAME}" "${MODEL}"
 	xz -9 --threads=0 "${BASE_TAR_NAME}"
 	mv "${BASE_TAR_NAME}.xz" "$WDIR/Dist"
 	echo -e "\n${LIGHT_YELLOW}[i] Zip file created: ${BASE_TAR_NAME}.xz${RESET}\n"
