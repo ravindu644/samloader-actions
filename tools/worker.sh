@@ -81,7 +81,9 @@ stock_files(){
 			fi
 
 	fi
-	xz -9 --threads=0 "$BASE_TAR_NAME"
+	mkdir "$MODEL" ; mv "${BASE_TAR_NAME}" "${MODEL}"
+	tar "${BASE_TAR_NAME}" "${MODEL}"
+	xz -9 --threads=0 "${BASE_TAR_NAME}"
 	mv "${BASE_TAR_NAME}.xz" "$WDIR/Dist"
 	echo -e "\n${LIGHT_YELLOW}[i] Zip file created: ${BASE_TAR_NAME}.xz${RESET}\n"
 }
