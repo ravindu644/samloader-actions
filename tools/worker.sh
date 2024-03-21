@@ -81,9 +81,9 @@ stock_files(){
 			fi
 
 	fi
-	zip "${BASE_TAR_NAME}.zip" "$BASE_TAR_NAME"
-	mv "${BASE_TAR_NAME}.zip" "$WDIR/Dist"
-	echo -e "\n${LIGHT_YELLOW}[i] Zip file created: ${BASE_TAR_NAME}.zip${RESET}\n"
+	xz -9 --threads=0 "$BASE_TAR_NAME"
+	mv "${BASE_TAR_NAME}.xz" "$WDIR/Dist"
+	echo -e "\n${LIGHT_YELLOW}[i] Zip file created: ${BASE_TAR_NAME}.xz${RESET}\n"
 }
 
 extract
