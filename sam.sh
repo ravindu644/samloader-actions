@@ -26,7 +26,7 @@ export BASE_TAR_NAME="Magisk-Patch-Me-${MODEL}.tar"
 
 echo -e "====================================\n"
 echo -e "${LIGHT_YELLOW}[+] Model: ${BOLD_WHITE}${MODEL}${RESET}\n${LIGHT_YELLOW}"
-echo -e "${LIGHT_YELLOW}[+] IMEI: ${BOLD_WHITE}${IMEI}${RESET}\n${LIGHT_YELLOW}"
+echo -e "${LIGHT_YELLOW}[+] IMEI: ${BOLD_WHITE}${IMEI:0:9}XXXXXX${RESET}\n${LIGHT_YELLOW}"
 echo -e "${LIGHT_YELLOW}[+] CSC: ${BOLD_WHITE}${CSC}${RESET}\n${LIGHT_YELLOW}${RESET}"
 echo -e "====================================\n"
 
