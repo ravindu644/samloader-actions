@@ -9,6 +9,25 @@
 > [!NOTE]
 > If you wish to upload the final results to your Telegram, create a public Telegram channel and a bot, add the bot to the channel, and set the GitHub environment secret `TELEGRAM_BOT_TOKEN` with your bot token and `TELEGRAM_CHAT_ID` with your channel's ID.
 
+## How to root your phone using only my Script..? 🌜
+**Requirements:**
+- a Samsung device with your latest Samsung software update.
+- Unlocked bootloader.
+- PC and USB cable.
+- Samsung USB Driver and ODIN. ( [Link 1](https://cloud.ravindu-deshan.workers.dev/0:/Samsung%20Tools%20for%20flashing%20-%20Ravindu%20Deshan.zip), [Link 2](https://drive.google.com/file/d/10XM_j-ZOMXOTTJoqkJ_BoNDEpfPeQSmf/view?usp=sharing), Or download "Odin" and "Samsung USB drivers" from google )
+- 🧠
+
+### Steps:
+**01.** Update your Samsung device to the latest software update.
+- Else, your device will fail to boot..❗
+
+**02.** Backup your important files/photos/videos/messages to an external storage.
+- Because our device will reset during the bootloader unlocking process.
+
+**03.** Unlock your device's bootloader using below guides.
+- [Old phones like J and Old A series (2015-2018)](https://github.com/ravindu644/Scamsung/wiki/How-to-root-your-Samsung-device-with-help-of-my-Script%3F-%5B-NO-TWRP-!-%5D#bootloader-unlocking-process---old-phones-like-j-and-old-a-series)
+- [Bootloader Unlocking Process - New Devices](https://github.com/ravindu644/Scamsung/wiki/How-to-root-your-Samsung-device-with-help-of-my-Script%3F-%5B-NO-TWRP-!-%5D#bootloader-unlocking-process---new-devices)
+
 ## ☑️ Usage:
 #### 1. Give this repository a Star ⭐️ and [fork](https://github.com/ravindu644/samloader-actions/fork) it.
 #### 2. Navigate to the "Actions" tab and select "Create a zip for Magisk". <br><br>
