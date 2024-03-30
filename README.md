@@ -28,7 +28,7 @@
 - [Old phones like J and Old A series (2015-2018)](https://github.com/ravindu644/Scamsung/wiki/How-to-root-your-Samsung-device-with-help-of-my-Script%3F-%5B-NO-TWRP-!-%5D#bootloader-unlocking-process---old-phones-like-j-and-old-a-series)
 - [Bootloader Unlocking Process - New Devices](https://github.com/ravindu644/Scamsung/wiki/How-to-root-your-Samsung-device-with-help-of-my-Script%3F-%5B-NO-TWRP-!-%5D#bootloader-unlocking-process---new-devices)
 
-**04.** Follow every step in the "Usage" Section.
+**04.** Follow every step in the "[Usage](https://github.com/ravindu644/samloader-actions#2%EF%B8%8F%E2%83%A3-usage-%EF%B8%8F)" Section.
 
 **05.** [Fixing common issues.](https://github.com/ravindu644/Scamsung/wiki/How-to-root-your-Samsung-device-with-help-of-my-Script%3F-%5B-NO-TWRP-!-%5D#debugging-process)
 
