@@ -63,6 +63,8 @@ https://github.com/ravindu644/samloader-actions/assets/126038496/9d6cc143-abcd-4
 - Simply press OK and your device will reboot in 5 seconds.
 <br><img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/3.jpg?raw=true" width="48%">
 
+#### 17. 🔥Once booted, install a root checker app and see the magic..! 😉
+
 ## Credits:
 - [Scamsung](https://github.com/ravindu644/Scamsung) + [Samloader](https://github.com/martinetd/samloader) - The core.
 - [Magisk](https://github.com/topjohnwu/Magisk) - The powerful rooting method.
