@@ -2,12 +2,12 @@
 
 **samloader-actions** is a GitHub CI script designed to download required files for Magisk to root your phone!
 <br>
-> [!NOTE]
-> If you wish to upload the final results to your Telegram, create a public Telegram channel and a bot, add the bot to the channel, and set the GitHub environment secret `TELEGRAM_BOT_TOKEN` with your bot token and `TELEGRAM_CHAT_ID` with your channel's ID.
 
 **❗️WARN:** If you input a **wrong IMEI**, the script will be fail to get the firmware from the Samsung server.
 
 **❗️WARN:** You must update the phone's software to the latest version before unlocking bootloader.
+> [!NOTE]
+> If you wish to upload the final results to your Telegram, create a public Telegram channel and a bot, add the bot to the channel, and set the GitHub environment secret `TELEGRAM_BOT_TOKEN` with your bot token and `TELEGRAM_CHAT_ID` with your channel's ID.
 
 ## ☑️ Usage:
 #### 1. Give this repository a Star ⭐️ and [fork](https://github.com/ravindu644/samloader-actions/fork) it.
