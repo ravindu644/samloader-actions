@@ -31,6 +31,21 @@
 #### 6. Download the artifact and extract the "tar.xz" file inside it.
 <img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/8.png?raw=true" width="60%">
 
+#### 7. Extract the "Magisk-Patch-Me-YOUR-MODEL.tar" inside that "tar.xz" file.
+<img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/9.png?raw=true" width="60%">
+
+#### 8. Now, copy the extracted "Magisk-Patch-Me-YOUR-MODEL.tar" to your phone's internal storage.
+
+<img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/10.png?raw=true" width="30%">
+
+#### 9. [Install the latest Magisk Manager APK from from here.](https://github.com/topjohnwu/Magisk/releases/latest)
+#### 10. Open Magisk Manager > Choose the first "Install" button > "Select and Patch a File" > Choose the tar file which we copied to internal storage > "LET'S GO ->"
+
+https://github.com/ravindu644/samloader-actions/assets/126038496/9d6cc143-abcd-46ce-9726-77bdbe328688
+
+#### 11. The patched tar file will be located in your "Download" folder.
+
+
 ## Credits:
 - [Scamsung](https://github.com/ravindu644/Scamsung) + [Samloader](https://github.com/martinetd/samloader) - The core.
 - [Magisk](https://github.com/topjohnwu/Magisk) - The powerful rooting method.
