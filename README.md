@@ -62,9 +62,10 @@
 <img src="https://github.com/ravindu644/samloader-actions/blob/stable/assets/10.png?raw=true" width="30%">
 
 #### 9. [Install the latest Magisk Manager APK from from here.](https://github.com/topjohnwu/Magisk/releases/latest)
+
 #### 10. Open Magisk Manager > Choose the first "Install" button > "Select and Patch a File" > Choose the tar file which we copied to internal storage > "LET'S GO ->"
 
-https://github.com/ravindu644/samloader-actions/assets/126038496/9d6cc143-abcd-46ce-9726-77bdbe328688
+https://github.com/ravindu644/samloader-actions/assets/126038496/143fdec9-af74-49c6-930f-2c11c22dce18
 
 #### 11. The patched tar file will be located in your "Download" folder. Copy it to your PC.
 <img src="https://github.com/ravindu644/samloader-actions/blob/stable/assets/11.png?raw=true" width="40%">
