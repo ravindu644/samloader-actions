@@ -7,10 +7,10 @@
 #### 2. Navigate to the "Actions" tab and select "Create a zip for Magisk". <br><br>
    <img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/3.png?raw=true" width="65%">
 
-#### 3. Fill in all the required information there..
-<img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/4.png?raw=true" width="50%">
+#### 3. Fill in all the required information there and press "Run workflow" button ✅.
+<br><img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/4.png?raw=true" width="50%">
 
-**Note:** You can find the value for CSC in "Settings > About phone > Software information > Service Provider software version".
+**🗒 Note:** You can find the value for CSC in "Settings > About phone > Software information > Service provider software version".
 <br><br><img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/5.png?raw=true" width="30%">
 
    > **Note:** If you wish to upload the final results to your Telegram, create a public Telegram channel and a bot, add the bot to the channel, and set the GitHub environment secret `TELEGRAM_BOT_TOKEN` with your bot token and `TELEGRAM_CHAT_ID` with your channel's ID.
