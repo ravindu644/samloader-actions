@@ -64,6 +64,7 @@ https://github.com/ravindu644/samloader-actions/assets/126038496/9d6cc143-abcd-4
 <br><img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/3.jpg?raw=true" width="48%">
 
 #### 17. 🔥Once booted, install a root checker app and see the magic..! 😉
+<br><img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/4.jpg?raw=true" width="48%">
 
 ## Credits:
 - [Scamsung](https://github.com/ravindu644/Scamsung) + [Samloader](https://github.com/martinetd/samloader) - The core.
