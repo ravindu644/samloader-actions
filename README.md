@@ -61,7 +61,7 @@ https://github.com/ravindu644/samloader-actions/assets/126038496/9d6cc143-abcd-4
 
 #### 16. Open Magisk Manager and You will see a notice like this :
 - Simply press OK and your device will reboot in 5 seconds.
-
+<br><img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/3.jpg?raw=true" width="48%">
 
 ## Credits:
 - [Scamsung](https://github.com/ravindu644/Scamsung) + [Samloader](https://github.com/martinetd/samloader) - The core.
