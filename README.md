@@ -47,9 +47,12 @@ https://github.com/ravindu644/samloader-actions/assets/126038496/9d6cc143-abcd-4
 <img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/11.png?raw=true" width="40%">
 
 #### 12. Reboot your Device to Download mode.
-- Use this Guide.
+- [Use this Guide](https://github.com/ravindu644/Scamsung/wiki/How-to-root-your-Samsung-device-with-help-of-my-Script%3F-%5B-NO-TWRP-!-%5D#-download-mode-key-combinations).
+<img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/1.jpg?raw=true" width="40%">
 
 #### 13. Open "ODIN" and click "AP" button and choose the "magisk_patched_xxxx.tar".
+<img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/12.png?raw=true" width="65%">
+
 ## Credits:
 - [Scamsung](https://github.com/ravindu644/Scamsung) + [Samloader](https://github.com/martinetd/samloader) - The core.
 - [Magisk](https://github.com/topjohnwu/Magisk) - The powerful rooting method.
