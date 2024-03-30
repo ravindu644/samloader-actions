@@ -1,16 +1,25 @@
-<h1>samloader-actions ⚙️</h1>
-<h3><a href="https://github.com/ravindu644/samloader-actions">samloader-actions</a> is a Github CI script to Download required files for Magisk to Root your phone..!</h3>
+# samloader-actions ⚙️
 
-## ☑️ Usage :
-**01.** Give me a Star ⭐️ and [fork](https://github.com/ravindu644/samloader-actions/fork) this repo.
+**samloader-actions** is a GitHub CI script designed to download required files for Magisk to root your phone!
 
-> [!NOTE]
-> If you like to upload the final results to your telegram, create a public telegram channel and a bot, add the bot to the channel and set the github environment secret ```TELEGRAM_BOT_TOKEN``` with your bot token and ```TELEGRAM_CHAT_ID``` with your channel's id.
+## ☑️ Usage:
+1. Give this repository a Star ⭐️ and [fork](https://github.com/ravindu644/samloader-actions/fork) it.
+   ![Fork Image](https://github.com/ravindu644/samloader-actions/blob/tmp/assets/2.png?raw=true)
 
-## Credits :
-<a href="https://github.com/ravindu644/Scamsung">Scamsung</a> + <a href="https://github.com/martinetd/samloader">Samloader</a> - The core. </br>
-<a href="https://github.com/topjohnwu/Magisk">Magisk</a> - The powerful rooting method.</br>
-<a href="https://github.com/libxzr/vbmeta-disable-verification">vbmeta-disable-verification</a> - Used to Disable AVB. </br>
-<a href="https://github.com/draekko/AIK-Linux">AIK-Linux</a> - Used to Unpack the boot.img to checkout the Ramdisk status.
+2. Navigate to the "Actions" tab and select "Create a zip for Magisk".
+   ![Actions Image](https://github.com/ravindu644/samloader-actions/blob/tmp/assets/3.png?raw=true)
+
+3. Fill in all the required information.
+   ![Information Image](https://github.com/ravindu644/samloader-actions/blob/tmp/assets/4.png?raw=true)
+
+   > **Note:** You can find the value for CSC in "Settings > About phone > Software information > Service Provider software version".
+
+   > **Note:** If you wish to upload the final results to your Telegram, create a public Telegram channel and a bot, add the bot to the channel, and set the GitHub environment secret `TELEGRAM_BOT_TOKEN` with your bot token and `TELEGRAM_CHAT_ID` with your channel's ID.
+
+## Credits:
+- [Scamsung](https://github.com/ravindu644/Scamsung) + [Samloader](https://github.com/martinetd/samloader) - The core.
+- [Magisk](https://github.com/topjohnwu/Magisk) - The powerful rooting method.
+- [vbmeta-disable-verification](https://github.com/libxzr/vbmeta-disable-verification) - Used to Disable AVB.
+- [AIK-Linux](https://github.com/draekko/AIK-Linux) - Used to Unpack the boot.img to check the Ramdisk status.
 
 ---
