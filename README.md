@@ -51,7 +51,17 @@ https://github.com/ravindu644/samloader-actions/assets/126038496/9d6cc143-abcd-4
 <img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/1.jpg?raw=true" width="40%">
 
 #### 13. Open "ODIN" and click "AP" button and choose the "magisk_patched_xxxx.tar".
-<img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/12.png?raw=true" width="65%">
+<br><img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/12.png?raw=true" width="65%">
+
+#### 14. Press "Start" in ODIN. It will begin to flash the patched file required for Magisk root to your device.
+<br><img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/13.png?raw=true" width="65%">
+
+#### 15. Now, your device should boot up. If failed, just do a "wipe data/factory reset" using Android recovery. (In my case, I didn't want to do a reset)
+<br><img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/2.jpg?raw=true" width="48%">
+
+#### 16. Open Magisk Manager and You will see a notice like this :
+- Simply press OK and your device will reboot in 5 seconds.
+
 
 ## Credits:
 - [Scamsung](https://github.com/ravindu644/Scamsung) + [Samloader](https://github.com/martinetd/samloader) - The core.
