@@ -17,7 +17,7 @@
 - Samsung USB Driver and ODIN. ( [Link 1](https://cloud.ravindu-deshan.workers.dev/0:/Samsung%20Tools%20for%20flashing%20-%20Ravindu%20Deshan.zip), [Link 2](https://drive.google.com/file/d/10XM_j-ZOMXOTTJoqkJ_BoNDEpfPeQSmf/view?usp=sharing), Or download "Odin" and "Samsung USB drivers" from google )
 - 🧠
 
-### Steps:
+## 1️⃣. Steps:
 **01.** Update your Samsung device to the latest software update.
 - Else, your device will fail to boot..❗
 
@@ -28,7 +28,11 @@
 - [Old phones like J and Old A series (2015-2018)](https://github.com/ravindu644/Scamsung/wiki/How-to-root-your-Samsung-device-with-help-of-my-Script%3F-%5B-NO-TWRP-!-%5D#bootloader-unlocking-process---old-phones-like-j-and-old-a-series)
 - [Bootloader Unlocking Process - New Devices](https://github.com/ravindu644/Scamsung/wiki/How-to-root-your-Samsung-device-with-help-of-my-Script%3F-%5B-NO-TWRP-!-%5D#bootloader-unlocking-process---new-devices)
 
-## ☑️ Usage:
+**04.** Do every step in the "Usage" Section.
+
+**05.** [Fixing common issues.](https://github.com/ravindu644/Scamsung/wiki/How-to-root-your-Samsung-device-with-help-of-my-Script%3F-%5B-NO-TWRP-!-%5D#debugging-process)
+
+## 2️⃣. Usage: ☑️ 
 #### 1. Give this repository a Star ⭐️ and [fork](https://github.com/ravindu644/samloader-actions/fork) it.
 #### 2. Navigate to the "Actions" tab and select "Create a zip for Magisk". <br><br>
    <img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/3.png?raw=true" width="65%">
