@@ -5,6 +5,10 @@
 > [!NOTE]
 > If you wish to upload the final results to your Telegram, create a public Telegram channel and a bot, add the bot to the channel, and set the GitHub environment secret `TELEGRAM_BOT_TOKEN` with your bot token and `TELEGRAM_CHAT_ID` with your channel's ID.
 
+**❗️WARN:** If you input a **wrong IMEI**, the script will be fail to get the firmware from the Samsung server.
+
+**❗️WARN:** You must update the phone's software to the latest version before unlocking bootloader.
+
 ## ☑️ Usage:
 #### 1. Give this repository a Star ⭐️ and [fork](https://github.com/ravindu644/samloader-actions/fork) it.
 #### 2. Navigate to the "Actions" tab and select "Create a zip for Magisk". <br><br>
@@ -19,7 +23,13 @@
 #### 4. The script will start the downloading process for you.
 <br><img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/6.png?raw=true" width="60%">
 
-#### 5. After 10-15 minutes, you can find the output files in your Telegram channel or Workflow's artifacts.
+#### 5. After 10-15 minutes, you can find the output files in your Telegram channel or Workflow's artifacts. (I'll choose the artifact.)
+<img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/7.png?raw=true" width="60%">
+
+> [!NOTE]
+> IF you didn't add the Telegram bot token and Channel ID to environment secrets, you will see a failure at the end of the script, just ignore it..!
+#### 6. Download the artifact and extract the "tar.xz" file inside it.
+<img src="https://github.com/ravindu644/samloader-actions/blob/tmp/assets/8.png?raw=true" width="60%">
 
 ## Credits:
 - [Scamsung](https://github.com/ravindu644/Scamsung) + [Samloader](https://github.com/martinetd/samloader) - The core.
