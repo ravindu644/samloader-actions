@@ -71,7 +71,7 @@ stock_files(){
 				cd "$WDIR/output" #changed dir
 				tar -cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img dtbo.img dt.img; rm *.img #cleaning
 			elif [ ! "$is_dt" == 1 ] && [ $is_dtbo == 1 ]; then
-				cp boot.img.lz4 vbmeta.img.lz4 recovery.img.lz4 dtbo.img.lz4 "$WDIR/output/"
+				cp boot.img vbmeta.img recovery.img dtbo.img "$WDIR/output/"
 				cd "$WDIR/output" #changed dir
 				tar -cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img dtbo.img ; rm *.img #cleaning
 			else
