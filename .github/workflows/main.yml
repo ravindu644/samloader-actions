@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:      
       model:
-        description: 'Your Model Number'
+        description: 'Galaxy A01'
         required: true       
       imei:
-        description: 'Your IMEI'
+        description: '355621110599754'
         required: true         
       csc:
-        description: 'Your CSC (Samsung Region code)'
+        description: 'XEV'
         required: true              
 
 jobs:
