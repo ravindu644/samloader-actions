@@ -4,7 +4,6 @@
 
 clear
 export WDIR=$(pwd)
-chmod +755 -R *
 source "$WDIR/res/colors"
 
 echo -e "\n${BLUE}Samloader Actions - By @ravindu644${RESET}\n"
@@ -41,11 +40,11 @@ fi
 echo -e "${MINT_GREEN}[+] Attempting to Download...\n ${RESET}"
 
 if [  -d "$WDIR/Downloads" ];then
-    rm -rf Downloads output Magisk Dist
+    rm -rf Downloads output Dist
 fi
 
 if [ ! -d "$WDIR/Downloads" ];then
-    mkdir Downloads output Magisk Dist
+    mkdir Downloads output Dist
 fi
 
 if ! python3 -m samloader -m "${MODEL}" -r "${CSC}" -i "${IMEI}" download -v "${VERSION}" -O "$WDIR/Downloads" ; then
@@ -67,7 +66,3 @@ rm "${FILE}"
 #### Begin of core worker ####
 
 bash "$WDIR/tools/worker.sh"
-
-#### Begin of Magisk Boot Image Patcher ####
-
-#bash "$WDIR/tools/patch.sh"
