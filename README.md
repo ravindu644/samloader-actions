@@ -49,8 +49,6 @@
 #### 5. After 10-15 minutes, you can find the output files in your Telegram channel or Workflow's artifacts. (I'll choose the artifact.)
 <img src="https://github.com/ravindu644/samloader-actions/blob/stable/assets/7.png?raw=true" width="95%">
 
-> [!NOTE]
-> IF you didn't add the Telegram bot token and Channel ID to environment secrets, you will see a failure at the end of the script, just ignore it..!
 #### 6. Download the artifact and extract the "tar.xz" file inside it.
 <img src="https://github.com/ravindu644/samloader-actions/blob/stable/assets/8.png?raw=true" width="95%">
 
