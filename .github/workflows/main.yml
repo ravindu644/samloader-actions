@@ -1,5 +1,4 @@
 name: Create a zip for Magisk
-
 on:
   workflow_dispatch:
     inputs:      
@@ -11,20 +10,23 @@ on:
         required: true         
       csc:
         description: 'Your CSC (Samsung Region code)'
-        required: true              
-
+        required: true
+      upload_to_telegram:
+        description: 'Upload to Telegram'
+        type: boolean
+        required: true
+        default: false
+              
 jobs:
   samloader-actions:
     runs-on: ubuntu-latest
     permissions:
       contents: write    
-
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-
       - name: Install packages & setup
         run: |
           sudo apt update -y > /dev/null 2>&1
@@ -39,14 +41,13 @@ jobs:
       - name: Running samloader-actions
         run: |
           bash sam.sh      
-
       - name: Uploading Stock Files
         uses: actions/upload-artifact@v4
         with:
           name: "Stock files - ${{ env.MODEL }}"
           path: Dist/${{ github.event.inputs.model }}*.xz                 
-
       - name: Upload to Telegram
+        if: ${{ github.event.inputs.upload_to_telegram == 'true' }}
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -56,8 +57,7 @@ jobs:
           disable_web_page_preview: false
           message: |
             <b>New Dump 📂..!</b>
-
             <b>Device :</b> ${{ env.MODEL }}                       
             <b>From Repository:</b> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
             
-            <b>Powered by:</b> <a href="https://github.com/ravindu644/samloader-actions">samloader-actions</a>            
+            <b>Powered by:</b> <a href="https://github.com/ravindu644/samloader-actions">samloader-actions</a>
