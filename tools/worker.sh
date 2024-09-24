@@ -44,17 +44,27 @@ is_dynamic(){
 
 stock_files(){
 	echo -e "${MINT_GREEN}[+] Copying the Required stock files for Magisk...\n${RESET}"
+
+	#init_boot and vendor_boot
+	cd "$WDIR/Downloads" #changed dir
+	if [ -e init_boot.img ]; then
+		cp init_boot.img "$WDIR/output/"
+	fi
+	if [ -e vendor_boot.img ]; then
+		cp vendor_boot.img "$WDIR/output/"
+	fi	
+
 	if [ "$is_legacy" == 1 ] && [ -e system.img ] || [ -e system.img.ext4 ]; then		
 		cd "$WDIR/Downloads" #changed dir
 		cp boot.img recovery.img "$WDIR/output/"
 		cd "$WDIR/output" #changed dir
-		tar -cvf "$BASE_TAR_NAME" boot.img recovery.img ; rm *.img #cleaning
+		tar -cvf "$BASE_TAR_NAME" *.img && rm *.img #cleaning
 
 	elif [ "$PARTITION_SCHEME" == 1 ]; then
 			cd "$WDIR/Downloads" #changed dir
 			cp boot.img vbmeta.img recovery.img dtbo.img "$WDIR/output/"
 			cd "$WDIR/output" #changed dir
-			tar -cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img dtbo.img; rm *.img #cleaning
+			tar -cvf "$BASE_TAR_NAME" *.img && rm *.img #cleaning
 		else
 			cd "$WDIR/Downloads" #changed dir
 			dt_check(){
@@ -69,30 +79,18 @@ stock_files(){
 			if [ "$is_dt" == 1 ] && [ $is_dtbo == 1 ]; then 
 				cp boot.img vbmeta.img recovery.img dtbo.img dt.img "$WDIR/output/"
 				cd "$WDIR/output" #changed dir
-				tar -cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img dtbo.img dt.img; rm *.img #cleaning
+				tar -cvf "$BASE_TAR_NAME" *.img && rm *.img #cleaning
 			elif [ ! "$is_dt" == 1 ] && [ $is_dtbo == 1 ]; then
 				cp boot.img vbmeta.img recovery.img dtbo.img "$WDIR/output/"
 				cd "$WDIR/output" #changed dir
-				tar -cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img dtbo.img ; rm *.img #cleaning
+				tar -cvf "$BASE_TAR_NAME" *.img && rm *.img #cleaning
 			else
 			 	cp boot.img vbmeta.img recovery.img "$WDIR/output/"
 				cd "$WDIR/output" #changed dir
-				tar -cvf "$BASE_TAR_NAME" boot.img vbmeta.img recovery.img ; rm *.img #cleaning
+				tar -cvf "$BASE_TAR_NAME" *.img && rm *.img #cleaning
 			fi
 
 	fi
-
-	boot_additional(){
-		cd "$WDIR/Downloads" #changed dir
-		if [ -e init_boot.img ]; then
-			cp init_boot.img "$WDIR/output/"
-		fi
-		if [ -e vendor_boot.img ]; then
-			cp vendor_boot.img "$WDIR/output/"
-		fi
-
-	}
-	boot_additional
 	cd "$WDIR/output" ; mkdir "${MODEL}" ; mv "${BASE_TAR_NAME}" "${MODEL}"
 	export BASE_TAR_NAME="${MODEL}-Magisk-files.tar"
 	tar -cvf "${BASE_TAR_NAME}" "${MODEL}"
