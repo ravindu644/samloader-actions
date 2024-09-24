@@ -81,6 +81,18 @@ stock_files(){
 			fi
 
 	fi
+
+	boot_additional(){
+		cd "$WDIR/Downloads" #changed dir
+		if [ -e init_boot.img ]; then
+			cp init_boot.img "$WDIR/output/"
+		fi
+		if [ -e vendor_boot.img ]; then
+			cp vendor_boot.img "$WDIR/output/"
+		fi
+
+	}
+	boot_additional
 	cd "$WDIR/output" ; mkdir "${MODEL}" ; mv "${BASE_TAR_NAME}" "${MODEL}"
 	export BASE_TAR_NAME="${MODEL}-Magisk-files.tar"
 	tar -cvf "${BASE_TAR_NAME}" "${MODEL}"
