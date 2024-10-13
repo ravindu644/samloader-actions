@@ -1,6 +1,6 @@
 # samloader-actions ⚙️
 
-**samloader-actions** is a GitHub CI script designed to download the required files for Magisk to root your phone without needing to download big firmware files..!
+**samloader-actions** is a GitHub CI script designed to download the required files for Magisk to root your Samsung device without needing to download big firmware files..!
 <br>
 
 **❗️WARNING:** If you input a **wrong IMEI**, the script will fail to get the firmware from the Samsung server.
