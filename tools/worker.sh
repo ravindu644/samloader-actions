@@ -10,6 +10,7 @@ REQUIRED_IMAGES=(
     "dtbo.img"
     "dtb.img"
     "vendor_boot.img"
+	"vbmeta_system.img"
 )
 
 extract() {
