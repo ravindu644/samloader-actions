@@ -1,4 +1,4 @@
-name: Download using a samfw.com Direct Link
+name: Download using a Direct Link
 on:
   workflow_dispatch:
     inputs:
@@ -7,7 +7,7 @@ on:
         required: true
 
       samfw_link:
-        description: 'Enter the Direct Samfw.com Download Link:'
+        description: 'Enter the Direct Download Link from Samfw.com:'
         required: true
               
 jobs:
