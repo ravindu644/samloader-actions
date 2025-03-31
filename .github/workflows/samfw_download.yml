@@ -1,4 +1,4 @@
-name: Create a zip for Magisk using a samfw.com Direct Link
+name: Download using a samfw.com Direct Link
 on:
   workflow_dispatch:
     inputs:
