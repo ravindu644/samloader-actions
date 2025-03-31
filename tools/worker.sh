@@ -11,6 +11,10 @@ REQUIRED_IMAGES=(
     "dtb.img"
     "vendor_boot.img"
 	"vbmeta_system.img"
+    #super.img
+    #up_param.bin
+    #you can add more...
+    #enter the file names without .lz4 extensions
 )
 
 extract() {
