@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 # Required image files
 REQUIRED_IMAGES=(
     "boot.img"
@@ -25,8 +27,10 @@ extract() {
     unzip firmware.zip && rm firmware.zip
     
     for file in *.tar.md5; do
-        tar -xvf "$file" && rm *.md5
+        tar -xvf "$file"
     done
+
+    rm -rf *.md5
     
     echo -e "\n${LIGHT_YELLOW}[i] Zip Extraction Completed..!${RESET}"
     
