@@ -23,7 +23,8 @@ jobs:
           
       - name: Set environment variables
         run: |
-          echo "SAMFW_LINK=${{ github.event.inputs.samfw_link }}" >> $GITHUB_ENV       
+          echo "SAMFW_LINK=${{ github.event.inputs.samfw_link }}" >> $GITHUB_ENV
+          echo "MODEL=${{ github.event.inputs.model }}" >> $GITHUB_ENV
           
       - name: Running samloader-actions
         run: |

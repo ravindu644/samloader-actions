@@ -19,6 +19,11 @@ mkdir -p Downloads output Dist
 
 # Check if direct download link is provided
 if [ ! -z "$SAMFW_LINK" ]; then
+
+    echo -e "====================================\n"
+    echo -e "${LIGHT_YELLOW}[+] Model: ${BOLD_WHITE}${MODEL}${RESET}\n${LIGHT_YELLOW}"
+    echo -e "====================================\n"
+
     echo -e "${MINT_GREEN}[+] Attempting to Download the Firmware From the Provided Link...${RESET}\n"
     curl -L --fail "$SAMFW_LINK" -o "$WDIR/Downloads/firmware.zip" || { 
         echo -e "\n${RED}[x] Download Failed..! Please provide a Direct Download Link. ${RESET}\n" >&2
