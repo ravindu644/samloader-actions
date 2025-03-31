@@ -1,0 +1,50 @@
+name: Create a zip for Magisk
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: 'Your Model Number'
+        required: true
+
+      samfw_link:
+        description: 'Enter the Direct Samfw.com Download Link:'
+        required: true
+              
+jobs:
+  samloader-actions:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write    
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          
+      - name: Set environment variables
+        run: |
+          echo "SAMFW_LINK=${{ github.event.inputs.samfw_link }}" >> $GITHUB_ENV       
+          
+      - name: Running samloader-actions
+        run: |
+          bash sam.sh  
+      - name: Uploading Stock Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: "Stock files - ${{ env.MODEL }}"
+          path: Dist/${{ github.event.inputs.model }}*.zip
+      - name: Upload to Telegram
+        if: ${{ github.event.inputs.upload_to_telegram == 'true' }}
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          document: Dist/${{ github.event.inputs.model }}*.zip
+          format: html
+          disable_web_page_preview: false
+          message: |
+            <b>New Dump 📂..!</b>
+            <b>Device :</b> ${{ env.MODEL }}                       
+            <b>From Repository:</b> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
+            
+            <b>Powered by:</b> <a href="https://github.com/ravindu644/samloader-actions">samloader-actions</a>
