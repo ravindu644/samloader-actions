@@ -20,7 +20,7 @@ extract() {
     
     unzip firmware.zip && rm firmware.zip
     
-    for file in AP*.tar.md5; do
+    for file in *.tar.md5; do
         tar -xvf "$file" && rm *.md5
     done
     
