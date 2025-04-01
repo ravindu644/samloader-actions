@@ -1,4 +1,4 @@
-name: Create a zip for Magisk
+name: Download Using Provided Details
 on:
   workflow_dispatch:
     inputs:      

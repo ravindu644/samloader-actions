@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 # Required image files
 REQUIRED_IMAGES=(
     "boot.img"
@@ -11,6 +13,10 @@ REQUIRED_IMAGES=(
     "dtb.img"
     "vendor_boot.img"
 	"vbmeta_system.img"
+    #super.img
+    #up_param.bin
+    #you can add more...
+    #enter the file names without .lz4 extensions
 )
 
 extract() {
@@ -20,9 +26,11 @@ extract() {
     
     unzip firmware.zip && rm firmware.zip
     
-    for file in AP*.tar.md5; do
-        tar -xvf "$file" && rm *.md5
+    for file in *.tar.md5; do
+        tar -xvf "$file"
     done
+
+    rm -rf *.md5
     
     echo -e "\n${LIGHT_YELLOW}[i] Zip Extraction Completed..!${RESET}"
     
