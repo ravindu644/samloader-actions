@@ -35,23 +35,28 @@ jobs:
       - name: Running samloader-actions
         run: |
           bash sam.sh  
+
       - name: Uploading Stock Files
+        id: upload-artifact
         uses: actions/upload-artifact@v4
         with:
           name: "Stock files - ${{ env.MODEL }}"
           path: Dist/${{ github.event.inputs.model }}*.zip
-      - name: Upload to Telegram
+
+      - name: Send Telegram Message with Artifact Link
         if: ${{ github.event.inputs.upload_to_telegram == 'true' }}
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          document: Dist/${{ github.event.inputs.model }}*.zip
           format: html
           disable_web_page_preview: false
           message: |
             <b>New Dump 📂..!</b>
-            <b>Device :</b> ${{ env.MODEL }}                       
+            <b>Device :</b> ${{ env.MODEL }}
+            
+            <b>Download Link:</b> https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            
             <b>From Repository:</b> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
             
             <b>Powered by:</b> <a href="https://github.com/ravindu644/samloader-actions">samloader-actions</a>
