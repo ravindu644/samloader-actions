@@ -72,9 +72,11 @@ Choose the appropriate guide for your device:
    - Visit samfw.com
    - Search for your model and region (CSC)
    - Find the exact firmware version matching your build/baseband number
-   - Click "Download on Samfw server"
+   - Click "Download on Samfw Server"
    - Cancel the download and go to downloads page (CTRL + J)
    - Right-click on the canceled file and copy the link
+  
+https://github.com/user-attachments/assets/900b9659-80ef-417f-bf05-213fae090e87
 
 4. Wait 5-10 minutes for processing to complete
 
