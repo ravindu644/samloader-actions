@@ -1,5 +1,9 @@
 # samloader-actions ⚙️
 
+<img src="./assets/banner.png">
+
+---
+
 **samloader-actions** is a GitHub CI script designed to download the required files for Magisk to root your Samsung device without downloading large firmware files.
 
 > [!NOTE]
