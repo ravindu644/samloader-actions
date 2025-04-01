@@ -12,7 +12,7 @@ REQUIRED_IMAGES=(
     "dtbo.img"
     "dtb.img"
     "vendor_boot.img"
-	"vbmeta_system.img"
+    "vbmeta_system.img"
     #super.img
     #up_param.bin
     #you can add more...
