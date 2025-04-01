@@ -55,10 +55,10 @@ jobs:
           disable_web_page_preview: false
           message: |
             <b>New Dump 📂..!</b>
+
             <b>Device :</b> ${{ env.MODEL }}
-            
-            <b>Download Link:</b> https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-            
             <b>From Repository:</b> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
+
+            <b>Download Link:</b> https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}            
             
             <b>Powered by:</b> <a href="https://github.com/ravindu644/samloader-actions">samloader-actions</a>
