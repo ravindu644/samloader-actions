@@ -2,6 +2,9 @@
 
 set -x
 
+# Import gofile uploader
+source "$WDIR/tools/gofile.sh"
+
 # Required image files
 REQUIRED_IMAGES=(
     "boot.img"
