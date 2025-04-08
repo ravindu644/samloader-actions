@@ -57,6 +57,6 @@ jobs:
             <b>Device :</b> ${{ env.MODEL }}
             <b>From Repository:</b> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
 
-            <b>Download Link:</b> <a href="${{ env.GOLINK }}">{{ env.GOLINK }}</a>
+            <b>Download Link:</b> ${{ env.GOLINK }}
 
             <b>Powered by:</b> <a href="https://github.com/ravindu644/samloader-actions">samloader-actions</a>
