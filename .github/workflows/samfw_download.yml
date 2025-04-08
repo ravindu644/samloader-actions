@@ -43,7 +43,7 @@ jobs:
           name: "Stock files - ${{ env.MODEL }}"
           path: Dist/${{ github.event.inputs.model }}*.zip
 
-      - name: Send Telegram Message with Artifact Link
+      - name: Send Telegram Message with Gofile Link
         if: ${{ github.event.inputs.upload_to_telegram == 'true' }}
         uses: appleboy/telegram-action@master
         with:
@@ -57,6 +57,6 @@ jobs:
             <b>Device :</b> ${{ env.MODEL }}
             <b>From Repository:</b> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
 
-            <b>Download Link:</b> https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}            
-            
+            <b>Download Link:</b> <a href="${{ env.GOLINK }}">{{ env.GOLINK }}</a>
+
             <b>Powered by:</b> <a href="https://github.com/ravindu644/samloader-actions">samloader-actions</a>

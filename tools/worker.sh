@@ -69,6 +69,10 @@ collect_and_package_files() {
     rm "$TAR_NAME"
     
     echo -e "\n${LIGHT_YELLOW}[i] Zip file created: ${TAR_NAME}.zip${RESET}\n"
+
+    upload_to_gofile "$WDIR/Dist/${TAR_NAME}.zip"
+
+
 }
 
 # Main execution

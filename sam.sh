@@ -5,6 +5,7 @@
 clear
 export WDIR=$(pwd)
 source "$WDIR/res/colors"
+source "$WDIR/tools/gofile.sh"
 
 echo -e "\n${BLUE}Samloader Actions - By @ravindu644${RESET}\n"
 echo -e "\n\t${UNBOLD_GREEN}Installing requirements...${RESET}\n"
