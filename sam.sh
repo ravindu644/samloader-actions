@@ -132,7 +132,7 @@ init_submodules() {
 
 # Check for and install required system packages only if they are missing
 install_dependencies() {
-    local packages="simg2img lz4 openssl python3 python3-pip"
+    local packages="android-sdk-libsparse-utils lz4 openssl python3 python3-pip"
     local to_install=""
     
     # Silently check for missing packages first
@@ -149,7 +149,7 @@ install_dependencies() {
             red "Error: Failed to install required packages. Please run the command manually." >&2
             exit 1
         fi
-        green "\t[+] Requirements installed successfully."
+        green "[+] Requirements installed successfully."
     fi
 }
 
@@ -238,7 +238,7 @@ mkdir -p "$WDIR/Downloads" "$WDIR/output" "$WDIR/Dist"
 
     # Final step
     green "\nRunning post-processing..."
-    if ! bash "$WDIR/tools/worker.sh"; then
+    if ! source "$WDIR/tools/worker.sh"; then
         red "Post-processing script failed." >&2
         exit 1
     fi

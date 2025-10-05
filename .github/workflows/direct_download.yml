@@ -37,7 +37,7 @@ jobs:
           
       - name: Running samloader-actions
         run: |
-          bash sam.sh      
+          bash sam.sh --model "${{ github.event.inputs.model }}" --imei "${{ github.event.inputs.imei }}" --csc "${{ github.event.inputs.csc }}"      
 
       - name: Uploading Stock Files
         id: upload-artifact

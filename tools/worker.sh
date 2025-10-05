@@ -7,6 +7,10 @@ source "$WDIR/images.conf"
 source "$WDIR/tools/gofile.sh"
 export PATH="$PATH:$WDIR/lptools"
 
+# Override config with environment variables if set
+[ -n "$WORKFLOW_MODE" ] && WORKFLOW_MODE="$WORKFLOW_MODE"
+[ -n "$STORAGE_FRIENDLY" ] && STORAGE_FRIENDLY="$STORAGE_FRIENDLY"
+
 extract() {
     cd "$WDIR/Downloads"
     
@@ -37,6 +41,23 @@ extract() {
             simg2img super.img super_raw.img && mv super_raw.img super.img
         fi
     fi
+    
+    # Storage-friendly cleanup: remove unnecessary files after extraction
+    if [ "${STORAGE_FRIENDLY:-0}" = "1" ]; then
+        echo -e "${LIGHT_YELLOW}[i] Storage-friendly mode: Cleaning up extraction artifacts...${RESET}"
+        # Keep only the required images and super.img if needed for logical extraction
+        for file in *; do
+            if [[ "$file" == super.img ]] && [ ${#REQUIRED_LOGICAL_IMAGES[@]} -gt 0 ]; then
+                continue  # Keep super.img if logical partitions needed
+            fi
+            if [[ " ${REQUIRED_IMAGES[@]} " =~ " ${file} " ]]; then
+                continue  # Keep required images
+            fi
+            if [ -f "$file" ]; then
+                rm -f "$file"
+            fi
+        done
+    fi
 }
 
 collect_and_package_files() {
@@ -63,6 +84,12 @@ collect_and_package_files() {
             fi
         done
         echo -e "\n${LIGHT_YELLOW}[i] Logical partition extraction completed.${RESET}\n"
+        
+        # Storage-friendly cleanup: remove super.img after logical extraction
+        if [ "${STORAGE_FRIENDLY:-0}" = "1" ]; then
+            echo -e "${LIGHT_YELLOW}[i] Storage-friendly mode: Removing super.img after logical extraction...${RESET}"
+            rm -f "$WDIR/Downloads/super.img"
+        fi
     fi
     
     # Copy all existing required images to output directory
@@ -72,6 +99,12 @@ collect_and_package_files() {
             cp "$img" "$WDIR/output/"
         fi
     done
+    
+    # Storage-friendly cleanup: remove Downloads after copying required files
+    if [ "${STORAGE_FRIENDLY:-0}" = "1" ]; then
+        echo -e "${LIGHT_YELLOW}[i] Storage-friendly mode: Removing Downloads directory after copying files...${RESET}"
+        rm -rf "$WDIR/Downloads"
+    fi
     
     # If not in workflow mode, skip packaging and uploading
     if [ "${WORKFLOW_MODE:-0}" != "1" ]; then
@@ -92,7 +125,6 @@ collect_and_package_files() {
     echo -e "\n${LIGHT_YELLOW}[i] Zip file created: ${TAR_NAME}.zip${RESET}\n"
 
     upload_to_gofile "$WDIR/Dist/${TAR_NAME}.zip"
-
 
 }
 

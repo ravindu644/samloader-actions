@@ -29,13 +29,12 @@ jobs:
           
       - name: Set environment variables
         run: |
-          echo "SAMFW_LINK=${{ github.event.inputs.samfw_link }}" >> $GITHUB_ENV
           echo "MODEL=${{ github.event.inputs.model }}" >> $GITHUB_ENV
           echo "WORKFLOW_MODE=1" >> $GITHUB_ENV
           
       - name: Running samloader-actions
         run: |
-          bash sam.sh  
+          bash sam.sh --url "${{ github.event.inputs.samfw_link }}" --model "${{ github.event.inputs.model }}"  
 
       - name: Uploading Stock Files
         id: upload-artifact
