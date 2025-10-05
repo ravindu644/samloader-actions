@@ -2,7 +2,7 @@
 
 # --- Configuration and Setup ---
 export WDIR
-WDIR=$(pwd)
+WDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Load color definitions, exit if they're missing.
 if [ -f "$WDIR/tools/colors" ]; then
@@ -223,8 +223,11 @@ main() {
     # Prepare environment
     init_submodules
     install_dependencies
-    rm -rf Downloads output Dist
-    mkdir -p Downloads output Dist
+# Prepare environment
+init_submodules
+install_dependencies
+rm -rf "$WDIR/Downloads" "$WDIR/output" "$WDIR/Dist"
+mkdir -p "$WDIR/Downloads" "$WDIR/output" "$WDIR/Dist"
 
     # Run selected mode
     if [ "$MODE" == "direct" ]; then
