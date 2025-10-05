@@ -4,7 +4,7 @@
 
 clear
 export WDIR=$(pwd)
-source "$WDIR/res/colors"
+source "$WDIR/tools/colors"
 
 echo -e "\n${BLUE}Samloader Actions - By @ravindu644${RESET}\n"
 echo -e "\n\t${UNBOLD_GREEN}Installing requirements...${RESET}\n"
