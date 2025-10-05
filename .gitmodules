@@ -1,0 +1,3 @@
+[submodule "lptools"]
+	path = lptools
+	url = https://github.com/ravindu644/android-partition-tools.git
