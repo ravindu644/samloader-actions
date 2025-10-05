@@ -2,25 +2,10 @@
 
 set -x
 
-# Import gofile uploader
+# Load helper scripts
+source "$WDIR/images.conf"
 source "$WDIR/tools/gofile.sh"
-
-# Required image files
-REQUIRED_IMAGES=(
-    "boot.img"
-    "init_boot.img"
-    "recovery.img"
-    "vbmeta.img"
-    "dt.img"
-    "dtbo.img"
-    "dtb.img"
-    "vendor_boot.img"
-    "vbmeta_system.img"
-    #super.img
-    #up_param.bin
-    #you can add more...
-    #enter the file names without .lz4 extensions
-)
+export PATH="$PATH:$WDIR/lptools"
 
 extract() {
     cd "$WDIR/Downloads"
@@ -44,6 +29,14 @@ extract() {
         lz4 -m *.lz4 > /dev/null 2>&1
         rm *.lz4
     fi
+    
+    # Convert super.img if it's sparse and logical partitions are defined
+    if [ -e "super.img" ] && [ ${#REQUIRED_LOGICAL_IMAGES[@]} -gt 0 ]; then
+        if file super.img | grep -q "Android sparse image"; then
+            echo -e "${MINT_GREEN}[+] Converting sparse super.img to raw...${RESET}\n"
+            simg2img super.img super_raw.img && mv super_raw.img super.img
+        fi
+    fi
 }
 
 collect_and_package_files() {
@@ -52,14 +45,32 @@ collect_and_package_files() {
     # Create output directory if it doesn't exist
     mkdir -p "$WDIR/output"
     
-    # Copy all existing required images to output directory
+    # Extract logical partitions from super.img if it exists
     cd "$WDIR/Downloads"
+    if [ -e "super.img" ] && [ ${#REQUIRED_LOGICAL_IMAGES[@]} -gt 0 ]; then
+        echo -e "${MINT_GREEN}[+] Extracting logical partitions...${RESET}\n"
+        for partition in "${REQUIRED_LOGICAL_IMAGES[@]}"; do
+            if [ -n "$partition" ]; then
+                echo -e "${LIGHT_YELLOW}[i] Extracting $partition.img${RESET}"
+                lpunpack -p "$partition" super.img
+            fi
+        done
+        echo -e "\n${LIGHT_YELLOW}[i] Logical partition extraction completed.${RESET}\n"
+    fi
+    
+    # Copy all existing required images to output directory
     for img in "${REQUIRED_IMAGES[@]}"; do
         if [ -e "$img" ]; then
             echo -e "${LIGHT_YELLOW}[i] Copying $img${RESET}"
             cp "$img" "$WDIR/output/"
         fi
     done
+    
+    # If not in workflow mode, skip packaging and uploading
+    if [ "${WORKFLOW_MODE:-0}" != "1" ]; then
+        echo -e "\n${LIGHT_YELLOW}[i] Images extracted to output directory (extract only mode)${RESET}\n"
+        return
+    fi
     
     # Create the tar file with all image files
     cd "$WDIR/output"

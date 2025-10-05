@@ -33,6 +33,7 @@ jobs:
           echo "MODEL=${{ github.event.inputs.model }}" >> $GITHUB_ENV
           echo "IMEI=${{ github.event.inputs.imei }}" >> $GITHUB_ENV
           echo "CSC=${{ github.event.inputs.csc }}" >> $GITHUB_ENV          
+          echo "WORKFLOW_MODE=1" >> $GITHUB_ENV
           
       - name: Running samloader-actions
         run: |

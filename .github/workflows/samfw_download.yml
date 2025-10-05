@@ -31,6 +31,7 @@ jobs:
         run: |
           echo "SAMFW_LINK=${{ github.event.inputs.samfw_link }}" >> $GITHUB_ENV
           echo "MODEL=${{ github.event.inputs.model }}" >> $GITHUB_ENV
+          echo "WORKFLOW_MODE=1" >> $GITHUB_ENV
           
       - name: Running samloader-actions
         run: |
