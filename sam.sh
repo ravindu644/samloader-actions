@@ -161,7 +161,7 @@ run_direct_download() {
     echo -e "$(yellow "[+] URL:")   ${URL}\n"
     echo -e "====================================\n"
 
-    green "Attempting to download firmware from the provided link..."
+    green "Attempting to download firmware from the provided link...\n"
     if ! curl -L --fail "$URL" -o "$WDIR/Downloads/firmware.zip"; then
         red "Download failed! Please check the link and your network connection." >&2
         exit 1

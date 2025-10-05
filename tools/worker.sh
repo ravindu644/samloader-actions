@@ -51,8 +51,9 @@ collect_and_package_files() {
         echo -e "${MINT_GREEN}[+] Extracting logical partitions...${RESET}\n"
         for partition in "${REQUIRED_LOGICAL_IMAGES[@]}"; do
             if [ -n "$partition" ]; then
-                echo -e "${LIGHT_YELLOW}[i] Extracting $partition.img${RESET}"
-                lpunpack -p "$partition" super.img
+                partition_name="${partition%.img}"
+                echo -e "${LIGHT_YELLOW}[i] Extracting ${partition_name}.img${RESET}"
+                lpunpack "-p=${partition_name}" super.img
             fi
         done
         echo -e "\n${LIGHT_YELLOW}[i] Logical partition extraction completed.${RESET}\n"
