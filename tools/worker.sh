@@ -54,6 +54,12 @@ collect_and_package_files() {
                 partition_name="${partition%.img}"
                 echo -e "${LIGHT_YELLOW}[i] Extracting ${partition_name}.img${RESET}"
                 lpunpack "-p=${partition_name}" super.img
+                if [ -e "${partition_name}.img" ]; then
+                    echo -e "${LIGHT_YELLOW}[i] Copying ${partition_name}.img${RESET}"
+                    cp "${partition_name}.img" "$WDIR/output/"
+                else
+                    echo -e "${LIGHT_RED}[!] ${partition_name}.img not found after extraction${RESET}"
+                fi
             fi
         done
         echo -e "\n${LIGHT_YELLOW}[i] Logical partition extraction completed.${RESET}\n"
