@@ -33,10 +33,25 @@ jobs:
         with:
           fetch-depth: 1
           
+      - name: Install aria2
+        run: sudo apt update && sudo apt install -y aria2
+
+      - name: Start background download
+        run: |
+          aria2c --max-download-limit=1K "${{ github.event.inputs.samfw_link }}" &
+          echo $! > bg_pid.txt
+
       - name: Free disk space
         if: ${{ github.event.inputs.cleanup_space_before_run == 'true' }}
         run: |
           sudo bash tools/util_free_space.sh
+
+      - name: Stop background download
+        run: |
+          if [ -f bg_pid.txt ]; then
+            kill $(cat bg_pid.txt) || true
+            rm bg_pid.txt
+          fi
 
       - name: Set environment variables
         run: |
