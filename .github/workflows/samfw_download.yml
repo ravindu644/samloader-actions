@@ -14,7 +14,13 @@ on:
         description: 'Upload to Telegram'
         type: boolean
         required: true
-        default: false        
+        default: false
+        
+      cleanup_space_before_run:
+        description: 'Cleanup space before run'
+        type: boolean
+        required: false
+        default: false
               
 jobs:
   samloader-actions:
@@ -27,6 +33,11 @@ jobs:
         with:
           fetch-depth: 1
           
+      - name: Free disk space
+        if: ${{ github.event.inputs.cleanup_space_before_run == 'true' }}
+        run: |
+          sudo bash tools/util_free_space.sh
+
       - name: Set environment variables
         run: |
           echo "MODEL=${{ github.event.inputs.model }}" >> $GITHUB_ENV
