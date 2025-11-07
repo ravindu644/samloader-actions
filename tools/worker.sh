@@ -13,27 +13,45 @@ export PATH="$PATH:$WDIR/lptools"
 
 extract() {
     cd "$WDIR/Downloads"
-    
-    echo -e "\n${MINT_GREEN}[+] Extracting the firmware Zip...${RESET}\n"
-    
-    unzip firmware.zip && rm firmware.zip
-    
+
+    echo -e "\n${MINT_GREEN}[+] Selectively extracting required firmware files...${RESET}\n"
+
+    # Define required files to extract
+    required_files=("${REQUIRED_IMAGES[@]}")
+    if [ ${#REQUIRED_LOGICAL_IMAGES[@]} -gt 0 ]; then
+        required_files+=("super.img")
+    fi
+
+    # Extract only .tar.md5 files from zip
+    unzip firmware.zip "*.tar.md5" && rm firmware.zip
+
+    # Extract required files from each tar
     for file in *.tar.md5; do
-        tar -xvf "$file"
+        tar_files=$(tar -tf "$file")
+        to_extract=()
+        for req in "${required_files[@]}"; do
+            if echo "$tar_files" | grep -q "^$req$"; then
+                to_extract+=("$req")
+            fi
+            if echo "$tar_files" | grep -q "^$req.lz4$"; then
+                to_extract+=("$req.lz4")
+            fi
+        done
+        if [ ${#to_extract[@]} -gt 0 ]; then
+            tar -xvf "$file" "${to_extract[@]}"
+        fi
     done
 
-    rm -rf *.md5
-    
-    echo -e "\n${LIGHT_YELLOW}[i] Zip Extraction Completed..!${RESET}"
-    
-    # Check and decompress LZ4 files if they exist
-    files=$(find . -name "*.lz4")
-    if [ -n "$files" ]; then
-        echo -e "${MINT_GREEN}[i] Decompressing LZ4 files...${RESET}\n"
-        lz4 -m *.lz4 > /dev/null 2>&1
-        rm *.lz4
-    fi
-    
+    rm -rf *.tar.md5
+
+    # Decompress only required .lz4 files
+    for req in "${required_files[@]}"; do
+        if [ -e "$req.lz4" ]; then
+            echo -e "${LIGHT_YELLOW}[i] Decompressing $req.lz4${RESET}"
+            lz4 -d "$req.lz4" "$req" && rm "$req.lz4"
+        fi
+    done
+
     # Convert super.img if it's sparse and logical partitions are defined
     if [ -e "super.img" ] && [ ${#REQUIRED_LOGICAL_IMAGES[@]} -gt 0 ]; then
         if file super.img | grep -q "Android sparse image"; then
@@ -41,23 +59,24 @@ extract() {
             simg2img super.img super_raw.img && mv super_raw.img super.img
         fi
     fi
-    
-    # Storage-friendly cleanup: remove unnecessary files after extraction
+
+    # Storage-friendly cleanup: remove any remaining unnecessary files
     if [ "${STORAGE_FRIENDLY:-0}" = "1" ]; then
-        echo -e "${LIGHT_YELLOW}[i] Storage-friendly mode: Cleaning up extraction artifacts...${RESET}"
-        # Keep only the required images and super.img if needed for logical extraction
+        echo -e "${LIGHT_YELLOW}[i] Storage-friendly mode: Cleaning up unnecessary files...${RESET}"
         for file in *; do
             if [[ "$file" == super.img ]] && [ ${#REQUIRED_LOGICAL_IMAGES[@]} -gt 0 ]; then
-                continue  # Keep super.img if logical partitions needed
+                continue
             fi
-            if [[ " ${REQUIRED_IMAGES[@]} " =~ " ${file} " ]]; then
-                continue  # Keep required images
+            if [[ " ${required_files[@]} " =~ " ${file} " ]]; then
+                continue
             fi
             if [ -f "$file" ]; then
                 rm -f "$file"
             fi
         done
     fi
+
+    echo -e "\n${LIGHT_YELLOW}[i] Selective extraction completed..!${RESET}"
 }
 
 collect_and_package_files() {
